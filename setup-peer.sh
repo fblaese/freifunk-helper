@@ -112,6 +112,7 @@ Hallo $name,
 
 Ich habe dir einen Wireguard-Tunnel angelegt:
 
+Name: $name
 Server: $SERVER
 Port: $port
 Public Key: $PUBKEY
