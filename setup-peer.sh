@@ -31,7 +31,14 @@ check_port() {
 check_name() {
 	local name="$1"
 
-	grep -r "wg_$name" /etc/network/interfaces.d >/dev/null
+	ifname="wg_$name"
+
+	if [ $(echo -n "$ifname" | wc -c) -ge 16 ]; then
+		error "Interface name too long!"
+		return 1
+	fi
+
+	grep -r "$ifname" /etc/network/interfaces.d >/dev/null
 	[ $? -eq "0" ] && error "Given name already in use!" && return 1
 
 	return 0
